@@ -85,10 +85,11 @@
                             <span
                                 class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Role</span>
                             <mat-form-field class="fuse-mat-dense flex-auto">
-                                <mat-select [value]="'Choose the role'" [formControlName]="'roleName'">
+                                <mat-select [value]="'Choose the role'" [formControlName]="'role'">
                                     <mat-option [value]="'Choose the trainer'">Choose the Role</mat-option>
                                     <mat-option [value]="'ROLE_USER'">User</mat-option>
                                     <mat-option [value]="'ROLE_ADMIN'">Admin</mat-option>
+                                    <mat-option [value]="'ROLE_TECH'">Technicien parc</mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
@@ -115,10 +116,10 @@
                             <span
                                 class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Phone number</span>
                             <mat-form-field class="fuse-mat-dense flex-auto">
-                                <input matInput [formControlName]="'phoneNumber'" type="number" maxlength="8"
-                                       placeholder="Add user phoneNumber" #postalCode>
+                                <input matInput [formControlName]="'phone'" type="number" maxlength="8"
+                                       placeholder="Add user phone" #postalCode>
                                 <mat-hint align="end">{{postalCode.value.length}} / 8</mat-hint>
-                                <mat-error *ngIf="userForm.get('phoneNumber').hasError('required')">
+                                <mat-error *ngIf="userForm.get('phone')?.hasError('required')">
                                     Address is required
                                 </mat-error>
                             </mat-form-field>
@@ -134,7 +135,7 @@
                                     matSuffix
                                     [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
-                                <mat-error *ngIf="userForm.get('phoneNumber').hasError('required')">
+                                <mat-error *ngIf="userForm.get('birthDate')?.hasError('required')">
                                     Email is required
                                 </mat-error>
 
@@ -143,37 +144,37 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col flex-auto mt-8 bg-card shadow rounded overflow-hidden">
-                    <div class="p-8 bg-gray-50 dark:bg-gray-700">
-                        <p class="text-lg font-medium">File</p>
-                        <p class="text-secondary">Can you add your cover picture </p>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <div class="p-8 pb-4">
-                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
-                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">User picture</span>
-                            <div>
-                                <input
-                                    id="image-file-input"
-                                    class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                    type="file"
-                                    [accept]="'image/jpeg, image/png'"
-                                    (change)="uploadImage(imageFileInput.files)"
-                                    #imageFileInput>
-                                <label
-                                    class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                    for="image-file-input"
-                                    matRipple>
-                                    <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                </label>
-                                <!--                                {{userForm.get('picture').errors | json}}-->
-                                <!--                                <mat-error *ngIf="userForm.get('picture').hasError('required')">-->
-                                <!--                                    Picture is required-->
-                                <!--                                </mat-error>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="flex flex-col flex-auto mt-8 bg-card shadow rounded overflow-hidden">-->
+<!--                    <div class="p-8 bg-gray-50 dark:bg-gray-700">-->
+<!--                        <p class="text-lg font-medium">File</p>-->
+<!--                        <p class="text-secondary">Can you add your cover picture </p>-->
+<!--                    </div>-->
+<!--                    <mat-divider></mat-divider>-->
+<!--                    <div class="p-8 pb-4">-->
+<!--                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">-->
+<!--                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">User picture</span>-->
+<!--                            <div>-->
+<!--                                <input-->
+<!--                                    id="image-file-input"-->
+<!--                                    class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"-->
+<!--                                    type="file"-->
+<!--                                    [accept]="'image/jpeg, image/png'"-->
+<!--                                    (change)="uploadImage(imageFileInput.files)"-->
+<!--                                    #imageFileInput>-->
+<!--                                <label-->
+<!--                                    class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"-->
+<!--                                    for="image-file-input"-->
+<!--                                    matRipple>-->
+<!--                                    <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>-->
+<!--                                </label>-->
+<!--                                &lt;!&ndash;                                {{userForm.get('picture').errors | json}}&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <mat-error *ngIf="userForm.get('picture').hasError('required')">&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                    Picture is required&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                </mat-error>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
                 <div class="flex items-center justify-end mt-10">

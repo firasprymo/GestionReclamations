@@ -40,11 +40,11 @@
                     <input
                         id="email"
                         matInput
-                        [formControlName]="'email'">
-                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
+                        [formControlName]="'username'">
+                    <mat-error *ngIf="signInForm.get('username').hasError('required')">
                         Email address is required
                     </mat-error>
-                    <mat-error *ngIf="signInForm.get('email').hasError('email')">
+                    <mat-error *ngIf="signInForm.get('username').hasError('email')">
                         Please enter a valid email address
                     </mat-error>
                 </mat-form-field>
@@ -79,11 +79,7 @@
 
                 <!-- Actions -->
                 <div class="inline-flex items-end justify-between w-full mt-1.5">
-                    <mat-checkbox
-                        [color]="'primary'"
-                        [formControlName]="'rememberMe'">
-                        Remember me
-                    </mat-checkbox>
+
                     <a
                         class="text-md font-medium text-primary-500 hover:underline"
                         [routerLink]="['/forgot-password']">Forgot password?
@@ -135,7 +131,7 @@
         <!-- Content -->
         <div class="z-10 relative w-full max-w-2xl">
             <div class="text-7xl font-bold leading-none text-gray-100" [routerLink]="['']">
-                <div>Now We Learn</div>
+                <div>Tasnim</div>
                 <div></div>
             </div>
             <div class="mt-6 text-lg tracking-tight leading-6 text-gray-400">Get unlimited access to our top courses.

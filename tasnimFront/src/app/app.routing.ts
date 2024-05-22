@@ -2,17 +2,15 @@ import {Route} from '@angular/router';
 import {AuthGuard} from 'app/core/auth/guards/auth.guard';
 import {LayoutComponent} from 'app/layout/layout.component';
 import {InitialDataResolver} from 'app/app.resolvers';
-import {NoAuthGuard} from './core/auth/guards/noAuth.guard';
+import {roleAdmin, roleTechnician, roleUser} from './shared/utils/constant';
 
-const roleAdmin = 'ROLE_ADMIN';
-const roleUser = 'ROLE_USER';
 // @formatter:off
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 export const appRoutes: Route[] = [
 
     // Redirect empty path to '/dashboards/project'
-    {path: '', pathMatch: 'full', redirectTo: '/apps/academy'},
+    {path: '', pathMatch: 'full', redirectTo: '/dashboards/project'},
 
     // Redirect signed-in user to the '/apps/academy'
     //
@@ -61,28 +59,10 @@ export const appRoutes: Route[] = [
                 },
                 children: [
                     {
-                        path: 'academy',
-                        data: {
-                            role: [roleAdmin, roleUser]
-                        },
-                        loadChildren: () => import('app/modules/admin/apps/academy/academy.module').then(m => m.AcademyModule)
-                    },
-                    {
                         path: 'ecommerce',
                         loadChildren: () => import('app/modules/admin/apps/ecommerce/ecommerce.module').then(m => m.ECommerceModule)
                     },
-                    {
-                        path: 'file-manager',
-                        loadChildren: () => import('app/layout/file-manager/file-manager.module').then(m => m.FileManagerModule)
-                    },
-                    {
-                        path: 'show-exams',
-                        loadChildren: () => import('app/modules/admin/pages/exam/show-exams/show-exams.module').then(m => m.ShowExamsModule)
-                    },
-                    {
-                        path: 'pass-exam/:idQuiz',
-                        loadChildren: () => import('app/modules/admin/pages/exam/pass-exam/pass-exam.module').then(m => m.PassExamModule)
-                    },
+
                 ]
             }
         ]
@@ -164,6 +144,9 @@ export const appRoutes: Route[] = [
                 path: 'pages',
                 canActivate: [AuthGuard],
                 canActivateChild: [AuthGuard],
+                data: {
+                    role: roleAdmin
+                },
                 children: [
 
                     // Activities
@@ -172,61 +155,100 @@ export const appRoutes: Route[] = [
                         loadChildren: () => import('app/modules/admin/pages/activities/activities.module').then(m => m.ActivitiesModule)
                     },
                     {
-                        path: 'add-course',
-                        canActivate: [AuthGuard],
-                        data: {
-                            role: roleAdmin
-                        },
-                        loadChildren: () => import('app/modules/admin/pages/course/add-course/add-course.module').then(m => m.AddCourseModule)
+                        path: 'add-reclamation',
+                        loadChildren: () => import('app/modules/admin/pages/reclamation/add-reclamation/add-reclamation.module').then(m => m.AddReclamationModule)
                     },
                     {
-                        path: 'show-courses',
+                        path: 'show-reclamations',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/course/show-courses/show-courses.module').then(m => m.ShowCoursesModule)
+                        loadChildren: () => import('app/modules/admin/pages/reclamation/show-reclamations/show-reclamations.module').then(m => m.ShowReclamationsModule)
                     },
                     {
-                        path: 'add-quiz/:idLesson',
+                        path: 'add-stock',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/quiz/add-quiz/add-quiz.module').then(m => m.AddQuizModule)
+                        loadChildren: () => import('app/modules/admin/pages/stock/add-stock/add-stock.module').then(m => m.AddStockModule)
                     },
                     {
-                        path: 'show-quizes',
+                        path: 'add-stock/:idStock',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/quiz/show-quizes/show-quizes.module').then(m => m.ShowQuizesModule)
+                        loadChildren: () => import('app/modules/admin/pages/stock/add-stock/add-stock.module').then(m => m.AddStockModule)
                     },
                     {
-                        path: 'add-trainer',
+                        path: 'show-stocks',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/trainers/add-trainer/add-trainer.module').then(m => m.AddTrainerModule)
+                        loadChildren: () => import('app/modules/admin/pages/stock/show-stocks/show-stocks.module').then(m => m.ShowStocksModule)
+                    },
+
+                    {
+                        path: 'show-categories',
+                        data: {
+                            role: roleAdmin
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/categories/show-categories/show-categories.module').then(m => m.ShowCategoriesModule)
                     },
                     {
-                        path: 'show-lessons',
+                        path: 'add-category',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/lesson/show-lessons/show-lessons.module').then(m => m.ShowLessonsModule)
+                        loadChildren: () => import('app/modules/admin/pages/categories/add-category/add-category.module').then(m => m.AddCategoryModule)
                     },
                     {
-                        path: 'add-lesson/:idCourse',
+                        path: 'add-category/:idCategory',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/lesson/add-lesson/add-lesson.module').then(m => m.AddLessonModule)
+                        loadChildren: () => import('app/modules/admin/pages/categories/add-category/add-category.module').then(m => m.AddCategoryModule)
                     },
                     {
-                        path: 'show-trainers',
+                        path: 'show-contacts',
                         data: {
                             role: roleAdmin
                         },
-                        loadChildren: () => import('app/modules/admin/pages/trainers/show-trainers/show-trainers.module').then(m => m.ShowTrainersModule)
+                        loadChildren: () => import('app/modules/admin/pages/contact/show-contacts/show-contacts.module').then(m => m.ShowContactsModule)
+                    },
+                    {
+                        path: 'add-contact',
+                        data: {
+                            role: roleAdmin
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/contact/add-contact/add-contact.module').then(m => m.AddContactModule)
+                    },
+                    {
+                        path: 'add-contact/:idContact',
+                        data: {
+                            role: roleAdmin
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/contact/add-contact/add-contact.module').then(m => m.AddContactModule)
+                    },
+                    {
+                        path: 'show-equipments',
+                        data: {
+                            role: roleTechnician
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/equipments/show-equipments/show-equipments.module').then(m => m.ShowEquipmentsModule)
+                    },
+                    {
+                        path: 'add-equipment',
+                        data: {
+                            role: roleTechnician
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/equipments/add-equipment/add-equipment.module').then(m => m.AddEquipmentModule)
+                    },
+                    {
+                        path: 'add-equipment/:idEquipment',
+                        data: {
+                            role: roleTechnician
+                        },
+                        loadChildren: () => import('app/modules/admin/pages/equipments/add-equipment/add-equipment.module').then(m => m.AddEquipmentModule)
                     },
                     {
                         path: 'add-user',
@@ -390,12 +412,12 @@ export const appRoutes: Route[] = [
             },
 
             // 404 & Catch all
-            {
-                path: '404-not-found',
-                pathMatch: 'full',
-                loadChildren: () => import('app/modules/admin/pages/error/error-404/error-404.module').then(m => m.Error404Module)
-            },
-            {path: '**', redirectTo: '404-not-found'}
+            // {
+            //     path: '404-not-found',
+            //     pathMatch: 'full',
+            //     loadChildren: () => import('app/modules/admin/pages/error/error-404/error-404.module').then(m => m.Error404Module)
+            // },
+            {path: '**', redirectTo: '/dashboards/project'}
         ]
     }
 ];

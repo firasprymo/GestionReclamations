@@ -2,12 +2,11 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, switchMap} from 'rxjs/operators';
-import {AuthUtils} from 'app/core/auth/auth.utils';
-import {UserService} from 'app/core/user/user.service';
 import {environment} from '../../../environments/environment';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {ApiService} from '../../shared/service/api.service';
 import {Users} from '../../shared/model/users.types';
+import {UsersService} from '../../shared/service/users.service';
 
 const helper = new JwtHelperService();
 
@@ -24,7 +23,7 @@ export class AuthService {
      */
     constructor(
         private _httpClient: HttpClient,
-        private _userService: UserService
+        private _userService: UsersService
     ) {
     }
 
@@ -80,15 +79,15 @@ export class AuthService {
      *
      * @param credentials
      */
-    signIn(credentials: { email: string; password: string }): Observable<any> {
+    signIn(credentials: { username: string; password: string }): Observable<any> {
         // Throw error, if the user is already logged in
         if (this._authenticated) {
             return throwError('User is already logged in.');
         }
-        return this._httpClient.post(`${environment.apiUrl}login`, credentials).pipe(
+        return this._httpClient.post('http://localhost:8010/api/v1/auth/login', credentials).pipe(
             switchMap((response: any) => {
                 // Store the access token in the local storage
-                this.accessToken = response.access_token;
+                this.accessToken = response.token;
                 this.decodedToken = helper.decodeToken(this.accessToken);
                 localStorage.setItem('username', this.decodedToken.sub);
                 const user = this._userService.get();
@@ -100,7 +99,7 @@ export class AuthService {
                 // Store the user on the user service
 
                 // Return a new observable with the response
-                return of(response);
+                return of(this.decodedToken);
             })
         );
     }
@@ -153,7 +152,7 @@ export class AuthService {
      * @param user
      */
     signUp(user): Observable<any> {
-        return this._httpClient.post(`${ApiService.apiVersion}${ApiService.apiUser}/sign-up`, user);
+        return this._httpClient.post(`${ApiService.apiVersion}${ApiService.apiUser}/auth/register`, user);
     }
 
     /**
@@ -176,11 +175,6 @@ export class AuthService {
 
         // Check the access token availability
         if (!this.accessToken) {
-            return of(false);
-        }
-
-        // Check the access token expire date
-        if (AuthUtils.isTokenExpired(this.accessToken)) {
             return of(false);
         }
 

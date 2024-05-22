@@ -1,0 +1,97 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+    <!-- Header -->
+    <div
+        class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <div
+            class="absolute inset-x-0 bottom-0"
+            *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div>
+        <!-- Title -->
+        <div class="text-4xl font-extrabold tracking-tight">Contacts</div>
+        <!-- Actions -->
+        <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'"
+                [routerLink]="['/pages/add-contact']">
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                <span class="ml-2 mr-1">Add</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex flex-auto overflow-hidden">
+        <!-- Trainers list -->
+        <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+            <ng-container *ngIf="(contacts$ | async) as contacts">
+                <ng-container *ngIf="contacts.length > 0; else noCourses">
+                    <div class="grid">
+                        <!-- Header -->
+                        <div
+                            class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            matSort
+                            matSortDisableClear>
+                            <div [mat-sort-header]="'name'">Nom</div>
+                            <div [mat-sort-header]="'email'">Email</div>
+                            <div [mat-sort-header]="'phone'">Phone</div>
+                            <div [mat-sort-header]="'user'">User</div>
+                            <div class="hidden sm:block">Actions</div>
+                        </div>
+                        <!-- Rows -->
+                        <ng-container *ngIf="(contacts$ | async) as contacts">
+                            <ng-container *ngFor="let contact of contacts; trackBy: trackByFn">
+                                <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                    <div class="hidden md:block truncate"> {{ contact?.name }}</div>
+                                    <div class="hidden md:block truncate"> {{ contact?.email }}</div>
+                                    <div class="hidden md:block truncate"> {{ contact?.phone }}</div>
+                                    <div class="hidden md:block truncate"> {{ contact?.user?.username }}</div>
+                                    <div>
+                                        <button
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                            mat-stroked-button
+                                            (click)="deleteSelectedContact(contact)">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                        </button>
+                                        <button
+                                            class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                            mat-stroked-button
+                                            [routerLink]="['/pages/add-contact/'+contact?.id]">
+                                            <mat-icon
+                                                class="icon-size-5"
+                                                [svgIcon]="'mat_solid:post_add'"></mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                    <mat-paginator
+                        class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                        [ngClass]="{'pointer-events-none': isLoading}"
+                        [length]="pagination.length"
+                        [pageIndex]="pagination.page"
+                        [pageSize]="pagination.size"
+                        [pageSizeOptions]="[5, 10, 25, 100]"
+                        [showFirstLastButtons]="true"></mat-paginator>
+
+                </ng-container>
+            </ng-container>
+            <ng-template #noCourses>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">There are no
+                    contact!
+                </div>
+            </ng-template>
+
+        </div>
+
+    </div>
+
+</div>

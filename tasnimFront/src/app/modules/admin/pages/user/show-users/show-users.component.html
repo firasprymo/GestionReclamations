@@ -90,18 +90,18 @@
 
                                     <!-- Name -->
                                     <div class="truncate">
-                                        {{user.username}}
+                                        {{ user.username }}
                                     </div>
 
                                     <!-- Price -->
                                     <div class="hidden sm:block">
-                                        {{user.email}}
+                                        {{ user.email }}
                                     </div>
                                     <div class="hidden sm:block">
-                                        <ng-container *ngFor="let role of user.roles">
-
-                                            {{role.name === 'ROLE_ADMIN' ? 'Admin' : (role.name === 'ROLE_USER' ? 'User' : 'Trainer')}}
-                                        </ng-container>
+                                        {{
+                                            user?.role === 'ROLE_ADMIN' ? 'Admin' :
+                                                (user?.role === 'ROLE_USER' ? 'User' : 'Technicien')
+                                        }}
                                     </div>
 
                                     <!-- Active -->

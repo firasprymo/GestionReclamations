@@ -6,6 +6,8 @@ import com.example.tasnimmakhlouf.repository.ReclamationRepository;
 import com.example.tasnimmakhlouf.services.ReclamationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.tasnimmakhlouf.entities.Reclamation;
@@ -22,6 +24,9 @@ public class ReclamationServiceImpl implements ReclamationService {
     }
     public List<Reclamation> getAllReclamations() {
         return reclamationrepository.findAll();
+    }
+    public Page<Reclamation> getAllReclamationsPage(Pageable pageable) {
+        return reclamationrepository.findAll(pageable);
     }
     public void deleteReclamation(Long id) {
         reclamationrepository.deleteById(id);

@@ -1,4 +1,4 @@
-<div *ngIf="item?.meta.indexOf(userRole)>-1 "
+<div [hidden]="item?.meta.indexOf(userRole)>-1 "
     class="fuse-vertical-navigation-item-wrapper"
     [class.fuse-vertical-navigation-item-has-subtitle]="!!item.subtitle"
     [ngClass]="item.classes?.wrapper">

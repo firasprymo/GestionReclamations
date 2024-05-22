@@ -4,18 +4,17 @@ import {forkJoin, Observable, Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {ApexOptions} from 'ng-apexcharts';
 import {ProjectService} from 'app/modules/admin/dashboards/project/project.service';
-import {Trainers} from '../../../../shared/model/trainers.types';
+import {Equipments} from '../../../../shared/model/equipments.types';
 import {Users} from '../../../../shared/model/users.types';
 import {UsersService} from '../../../../shared/service/users.service';
-import {CoursesService} from '../../../../shared/service/courses.service';
-import {QuizService} from '../../../../shared/service/quiz.service';
-import {TrainerService} from '../../../../shared/service/trainer.service';
+import {ReclamationsService} from '../../../../shared/service/reclamations.service';
+import {ContactsService} from '../../../../shared/service/contacts.service';
+import {EquipmentsService} from '../../../../shared/service/equipments.service';
 
 @Component({
     selector: 'project',
     templateUrl: './project.component.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectComponent implements OnInit, OnDestroy {
     user$: Observable<Users>;
@@ -29,9 +28,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
     data: any;
     selectedProject: string = 'ACME Corp. Backend App';
     users: any = [];
-    quizs: any = [];
-    trainers: any = [];
-    courses: any = [];
+    contacts: any = [];
+    equipments: any = [];
+    reclamations: any = [];
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -41,9 +40,9 @@ export class ProjectComponent implements OnInit, OnDestroy {
         private _projectService: ProjectService,
         private _router: Router,
         private _usersService: UsersService,
-        private _coursesService: CoursesService,
-        private _quizService: QuizService,
-        private _trainerService: TrainerService
+        private _reclamationsService: ReclamationsService,
+        private _contactsService: ContactsService,
+        private _equipmentsService: EquipmentsService
     ) {
     }
 
@@ -58,17 +57,17 @@ export class ProjectComponent implements OnInit, OnDestroy {
         console.log('check');
         forkJoin([
             this._usersService.getAllUsers(),
-            this._quizService.getAllQuizs(),
-            this._trainerService.getAllTrainers(),
-            this._coursesService.getAllCourses(),
+            this._contactsService.getAllContacts(),
+            this._equipmentsService.getAllEquipments(),
+            this._reclamationsService.getAllReclamations(),
 
         ]).subscribe((responses: any) => {
             console.log(responses);
             this.users = responses[0].content;
             console.log(this.users);
-            this.quizs = responses[1].content;
-            this.trainers = responses[2].content;
-            this.courses = responses[3].content;
+            this.contacts = responses[1].content;
+            this.equipments = responses[2].content;
+            this.reclamations = responses[3].content;
         });
         this.user$ = this._usersService.user$;
 

@@ -1,7 +1,6 @@
 package com.example.tasnimmakhlouf.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,5 @@ public class Contact implements Serializable {
     private String phone;
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
-    private Utilisateur utilisateur;
+    private Utilisateur user;
 }
