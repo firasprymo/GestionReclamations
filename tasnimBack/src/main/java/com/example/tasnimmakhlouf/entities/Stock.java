@@ -1,14 +1,10 @@
 package com.example.tasnimmakhlouf.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,16 +19,15 @@ public class Stock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String eqdispo;
-    @Column(nullable = false)
-    private int qte;
-    @Column(nullable = false)
-    private String date_d;
-//    @ManyToMany
-//    List<Technicien> techniciens;
-//
-//    @ManyToMany
-//    List<Equipement> equipements;
+    private String availableEquipment;
+    private int quantity;
+    private String stockRecord;
+    private String location;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    @ManyToOne
+    @JoinColumn(name = "equipment_id")
+    Equipment equipment;
 
 
 }

@@ -2,9 +2,12 @@ package com.example.tasnimmakhlouf.services.implementation;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.entities.Reclamation;
 import com.example.tasnimmakhlouf.repository.EquipmentRepository;
 import com.example.tasnimmakhlouf.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.tasnimmakhlouf.entities.Equipment;
@@ -26,7 +29,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     public Equipment getByEquipment(Long id) {
         return equipmentRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reclamation not found"));
+                .orElseThrow(() -> new RuntimeException("Equipment not found"));
     }
 
     public void deleteEquipment(Long id) {
@@ -36,5 +39,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
     }
-
+    public Page<Equipment> getAllEquipmentsPage(Pageable pageable) {
+        return equipmentRepository.findAll(pageable);
+    }
 }

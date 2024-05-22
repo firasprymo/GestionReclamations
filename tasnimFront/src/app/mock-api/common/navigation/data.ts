@@ -1,43 +1,16 @@
 /* eslint-disable */
 import {FuseNavigationItem} from '@fuse/components/navigation';
+import {roleAdmin, roleTechnician} from '../../../shared/utils/constant';
 
 export const defaultNavigation: FuseNavigationItem[] = [
 
     {
         id: 'dashboards',
         title: 'Dashboards',
-        meta: 'ROLE_ADMIN',
+        meta: '',
         type: 'basic',
         icon: 'heroicons_outline:home',
         link: '/dashboards/project',
-    },
-    {
-        id: 'trainers',
-        title: 'Trainer',
-        subtitle: '',
-        type: 'group',
-        icon: 'heroicons_outline:home',
-        meta: 'ROLE_ADMIN',
-        children: [
-            {
-                id: 'trainers.add',
-                title: 'Add trainer',
-                type: 'basic',
-                icon: 'heroicons_outline:pencil-alt',
-                link: '/pages/add-trainer',
-                meta: 'ROLE_ADMIN',
-
-            },
-            {
-                id: 'trainers.show',
-                title: 'Show trainers',
-                type: 'basic',
-                icon: 'heroicons_outline:chart-pie',
-                link: '/pages/show-trainers',
-                meta: 'ROLE_ADMIN',
-
-            },
-        ]
     },
     {
         id: 'users',
@@ -67,153 +40,198 @@ export const defaultNavigation: FuseNavigationItem[] = [
         ]
     },
     {
-        id: 'courses',
-        title: 'Courses',
+        id: 'reclamations',
+        title: 'Reclamations',
         subtitle: '',
         type: 'group',
         icon: 'heroicons_outline:home',
         meta: 'ROLE_ADMIN',
         children: [
             {
-                id: 'courses.add',
-                title: 'Add course',
+                id: 'reclamations.add',
+                title: 'Add reclamation',
                 type: 'basic',
                 icon: 'heroicons_outline:pencil-alt',
-                link: '/pages/add-course',
+                link: '/pages/add-reclamation',
                 meta: 'ROLE_ADMIN',
             },
             {
-                id: 'courses.show',
-                title: 'Show courses',
+                id: 'reclamations.show',
+                title: 'Show reclamations',
                 type: 'basic',
                 icon: 'heroicons_outline:chart-pie',
-                link: '/pages/show-courses',
+                link: '/pages/show-reclamations',
                 meta: 'ROLE_ADMIN',
             },
         ]
     },
+    {
+        id: 'contacts',
+        title: 'Contact',
+        subtitle: '',
+        type: 'group',
+        icon: 'heroicons_outline:home',
+        meta: roleAdmin,
+        children: [
+            {
+                id: 'contacts.add',
+                title: 'Add Contact',
+                type: 'basic',
+                icon: 'heroicons_outline:pencil-alt',
+                link: '/pages/add-contact',
+                meta: roleAdmin,
+            },
+            {
+                id: 'contacts.show',
+                title: 'Show contacts',
+                type: 'basic',
+                icon: 'heroicons_outline:chart-pie',
+                link: '/pages/show-contacts',
+                meta: roleAdmin,
+            },
+        ]
+    },
+    {
+        id: 'equipments',
+        title: 'Equipment',
+        subtitle: '',
+        type: 'group',
+        icon: 'heroicons_outline:home',
+        meta: roleTechnician,
+        children: [
+            {
+                id: 'equipments.add',
+                title: 'Add equipment',
+                type: 'basic',
+                icon: 'heroicons_outline:pencil-alt',
+                link: '/pages/add-equipment',
+                meta: roleTechnician,
+
+            },
+            {
+                id: 'equipments.show',
+                title: 'Show equipments',
+                type: 'basic',
+                icon: 'heroicons_outline:chart-pie',
+                link: '/pages/show-equipments',
+                meta: roleTechnician,
+
+            },
+        ]
+    },
+
+    {
+        id: 'stocks',
+        title: 'Stock',
+        subtitle: '',
+        type: 'group',
+        icon: 'heroicons_outline:home',
+        meta: roleTechnician,
+        children: [
+            {
+                id: 'stocks.add',
+                title: 'Add stock',
+                type: 'basic',
+                icon: 'heroicons_outline:pencil-alt',
+                link: '/pages/add-stock',
+                meta: roleTechnician,
+            },
+            {
+                id: 'stocks.show',
+                title: 'Show stocks',
+                type: 'basic',
+                icon: 'heroicons_outline:chart-pie',
+                link: '/pages/show-stocks',
+                meta: roleTechnician,
+            },
+        ]
+    },
+    {
+        id: 'categories',
+        title: 'Category',
+        subtitle: '',
+        type: 'group',
+        icon: 'heroicons_outline:home',
+        meta: roleTechnician,
+        children: [
+            {
+                id: 'categories.add',
+                title: 'Add category',
+                type: 'basic',
+                icon: 'heroicons_outline:pencil-alt',
+                link: '/pages/add-category',
+                meta: roleTechnician,
+            },
+            {
+                id: 'categories.show',
+                title: 'Show categories',
+                type: 'basic',
+                icon: 'heroicons_outline:chart-pie',
+                link: '/pages/show-categories',
+                meta: roleTechnician,
+            },
+        ]
+    },
+
     // {
-    //     id: 'quizes',
-    //     title: 'Quiz',
+    //     id: 'apps',
+    //     title: 'Academy',
+    //     subtitle: 'Custom made application designs',
+    //     type: 'group',
+    //     icon: 'heroicons_outline:home',
+    //     meta: 'ROLE_ADMIN',
+    //     children: [
+    //         {
+    //             id: 'apps.academy',
+    //             title: 'Academy',
+    //             type: 'basic',
+    //             icon: 'heroicons_outline:academic-cap',
+    //             link: '/apps/academy',
+    //             meta: 'ROLE_ADMIN',
+    //         },
+    //     ]
+    // },
+    // {
+    //     id: 'pricing',
+    //     title: 'Offers',
     //     subtitle: '',
     //     type: 'group',
     //     icon: 'heroicons_outline:home',
     //     meta: 'ROLE_ADMIN',
     //     children: [
     //         {
-    //             id: 'quizes.add',
-    //             title: 'Add quiz',
+    //             id: 'apps.offers',
+    //             title: 'Offers',
     //             type: 'basic',
-    //             icon: 'heroicons_outline:pencil-alt',
-    //             link: '/pages/add-quiz',
-    //             meta: 'ROLE_ADMIN',
-    //         },
-    //         {
-    //             id: 'quizes.show',
-    //             title: 'Show quizes',
-    //             type: 'basic',
-    //             icon: 'heroicons_outline:chart-pie',
-    //             link: '/pages/show-quizes',
+    //             icon: 'heroicons_outline:academic-cap',
+    //             link: '/pages/pricing/simple',
     //             meta: 'ROLE_ADMIN',
     //         },
     //     ]
     // },
     {
-        id: 'lessons',
-        title: 'Lessons',
+        id: 'newArrivals',
+        title: 'New Arrivals',
         subtitle: '',
         type: 'group',
         icon: 'heroicons_outline:home',
-        meta: 'ROLE_ADMIN',
+        meta: roleTechnician,
         children: [
-            // {
-            //     id: 'lessons.add',
-            //     title: 'Add lesson',
-            //     type: 'basic',
-            //     icon: 'heroicons_outline:pencil-alt',
-            //     link: '/pages/add-lesson',
-            //     meta: 'ROLE_ADMIN',
-            // },
             {
-                id: 'lessons.show',
-                title: 'Show lesson',
+                id: 'newArrivals.add',
+                title: 'Add new Arrival',
+                type: 'basic',
+                icon: 'heroicons_outline:pencil-alt',
+                link: '/pages/add-new-arrival',
+                meta: roleTechnician,
+            },
+            {
+                id: 'newArrivals.show',
+                title: 'Show new Arrivals',
                 type: 'basic',
                 icon: 'heroicons_outline:chart-pie',
-                link: '/pages/show-lessons',
-                meta: 'ROLE_ADMIN',
-            },
-        ]
-    },
-    {
-        id: 'resources',
-        title: 'Resources',
-        subtitle: '',
-        type: 'group',
-        icon: 'heroicons_outline:home',
-        meta: 'ROLE_USER',
-        children: [
-
-            {
-                id: 'resources.show',
-                title: 'Show resources',
-                type: 'basic',
-                icon: 'heroicons_outline:chart-pie',
-                link: '/apps/file-manager',
-                meta: 'ROLE_USER',
-            },
-        ]
-    },
-    {
-        id: 'apps',
-        title: 'Academy',
-        subtitle: 'Custom made application designs',
-        type: 'group',
-        icon: 'heroicons_outline:home',
-        meta: 'ROLE_USER',
-        children: [
-            {
-                id: 'apps.academy',
-                title: 'Academy',
-                type: 'basic',
-                icon: 'heroicons_outline:academic-cap',
-                link: '/apps/academy',
-                meta: 'ROLE_USER',
-            },
-        ]
-    },
-    {
-        id: 'pricing',
-        title: 'Offers',
-        subtitle: '',
-        type: 'group',
-        icon: 'heroicons_outline:home',
-        meta: 'ROLE_USER',
-        children: [
-            {
-                id: 'apps.offers',
-                title: 'Offers',
-                type: 'basic',
-                icon: 'heroicons_outline:academic-cap',
-                link: '/pages/pricing/simple',
-                meta: 'ROLE_USER',
-            },
-        ]
-    },
-    {
-        id: 'passExams',
-        title: 'Exams',
-        subtitle: '',
-        type: 'group',
-        icon: 'heroicons_outline:home',
-        meta: 'ROLE_USER',
-        children: [
-            {
-                id: 'apps.passExams',
-                title: 'Exams',
-                type: 'basic',
-                icon: 'heroicons_outline:academic-cap',
-                link: '/apps/show-exams',
-                meta: 'ROLE_USER',
+                link: '/pages/show-new-arrivals',
+                meta: roleTechnician,
             },
         ]
     },
@@ -233,7 +251,7 @@ export const compactNavigation: FuseNavigationItem[] = [
         title: 'Resources',
         subtitle: '',
         type: 'group',
-        meta: 'ROLE_USER',
+        meta: 'ROLE_ADMIN',
         icon: 'heroicons_outline:home',
         children: [
 
@@ -260,7 +278,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
     {
         id: 'resources',
         title: 'Resources',
-        meta: 'ROLE_USER',
+        meta: 'ROLE_ADMIN',
         subtitle: '',
         type: 'group',
         icon: 'heroicons_outline:home',
@@ -295,7 +313,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         subtitle: '',
         type: 'basic',
         icon: 'heroicons_outline:home',
-        meta: 'ROLE_USER',
+        meta: 'ROLE_ADMIN',
         link: '/apps/academy',
     },
     {
@@ -303,7 +321,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         title: 'Resources',
         subtitle: '',
         type: 'basic',
-        meta: 'ROLE_USER',
+        meta: 'ROLE_ADMIN',
         icon: 'heroicons_outline:folder',
         link: '/apps/file-manager'
     },
@@ -313,7 +331,7 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         subtitle: '',
         type: 'basic',
         icon: 'heroicons_outline:shopping-bag',
-        meta: 'ROLE_USER',
+        meta: 'ROLE_ADMIN',
         link: '/pages/pricing/simple',
     }
 ];

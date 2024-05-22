@@ -2,8 +2,11 @@ package com.example.tasnimmakhlouf.Controllers;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.entities.Reclamation;
 import com.example.tasnimmakhlouf.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,13 +28,16 @@ public class EquipmentController {
     private List<Equipment> getAllEquipments() {
         return equipmentService.getAllEquipments();
     }
-
+    @GetMapping("/get-all-equipments")
+    private Page<Equipment> getAllEquipmentsPage(Pageable pageable) {
+        return equipmentService.getAllEquipmentsPage(pageable);
+    }
     @GetMapping("/{id}")
     private Equipment getEquipment(@PathVariable("id") Long id) {
         return equipmentService.getByEquipment(id);
     }
 
-    @PostMapping
+    @PostMapping("")
     private Equipment createEquipment(@RequestBody Equipment equipment) {
         return equipmentService.addEquipment(equipment);
     }

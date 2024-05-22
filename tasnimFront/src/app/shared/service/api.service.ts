@@ -13,11 +13,11 @@ export class ApiService {
     public static apiPicture = environment.apiImg;
     public static apiUser = environment.users;
     public static apiSKills = environment.skills;
-    public static apiCourses = environment.courses;
-    public static apiLessons = environment.lessons;
-    public static apiTrainer = environment.trainers;
-    public static apiQuiz = environment.quizs;
-    public static apiStep = environment.steps;
+    public static apiReclamations = environment.reclamations;
+    public static apiCategories = environment.categories;
+    public static apiEquipment = environment.equipments;
+    public static apiContact = environment.contacts;
+    public static apiStock = environment.stocks;
 
     token: any;
 

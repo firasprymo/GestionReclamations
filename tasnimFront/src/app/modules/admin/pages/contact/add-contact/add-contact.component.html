@@ -1,0 +1,92 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">Contact</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Add</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="max-w-3xl">
+            <!-- Sectioned form with separate cards #3 -->
+            <form [formGroup]="contactForm">
+                <div class="flex flex-col mt-8 bg-card shadow rounded overflow-hidden">
+                    <div class="p-8 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-lg font-medium">New contact</p>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="p-8 pb-4">
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                                gt-xs:mb-0">Name</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'name'"
+                                       placeholder="Ajouter le name">
+                                <mat-error *ngIf="contactForm.get('name').hasError('required')">
+                                    Type is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                                gt-xs:mb-0">Email</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'email'" type="email"
+                                       placeholder="Ajouter le email">
+                                <mat-error *ngIf="contactForm.get('email').hasError('required')">
+                                    Type is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                                gt-xs:mb-0">Phone</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'phone'" type="number"
+                                       placeholder="Ajouter le phone">
+                                <mat-error *ngIf="contactForm.get('phone').hasError('required')">
+                                    Type is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end mt-10">
+                    <button mat-button (click)="cancelCategoryForm()">
+                        Cancel
+                    </button>
+                    <button *ngIf="isUpdate else onCreate" (click)="updateContact()"
+                            class="px-2 ml-3"
+                            mat-flat-button
+                            [color]="'warn'">
+                        Update
+                    </button>
+                    <ng-template #onCreate>
+                        <button
+                            (click)="addContact()"
+                            class="px-2 ml-3"
+                            mat-flat-button
+                            [color]="'primary'">
+                            Save
+                        </button>
+                    </ng-template>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

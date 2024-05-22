@@ -3,6 +3,8 @@ package com.example.tasnimmakhlouf.services;
 import java.util.List;
 
 import com.example.tasnimmakhlouf.entities.Equipment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface EquipmentService {
 
@@ -15,5 +17,6 @@ public interface EquipmentService {
     void deleteEquipment(Long id);
 
     List<Equipment> getAllEquipments();
+    Page<Equipment> getAllEquipmentsPage(Pageable pageable);
 
 }

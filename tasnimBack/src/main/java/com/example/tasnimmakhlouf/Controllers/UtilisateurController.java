@@ -2,6 +2,9 @@ package com.example.tasnimmakhlouf.Controllers;
 
 import com.example.tasnimmakhlouf.services.UtilisateurService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.tasnimmakhlouf.entities.Utilisateur;
 import jakarta.validation.Valid;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,36 +21,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@RequestMapping("/api/v1/utilisateurs")
+@RequestMapping("/api/v1/users")
 @RestController
 @RequiredArgsConstructor
 public class UtilisateurController {
-    private final UtilisateurService utilisateur;
-
+    private final UtilisateurService utilisateurService;
+    @GetMapping("/Me")
+    public ResponseEntity<Optional<Utilisateur>> getUser() {
+        return ResponseEntity.ok(utilisateurService.getUser());
+    }
+    @GetMapping("/get-all-users")
+    private ResponseEntity<Page<Utilisateur>> getAllUtilisateursPage(Pageable pageable) {
+        return ResponseEntity.ok(utilisateurService.getAllUtilisateursPage(pageable));
+    }
     @GetMapping("/")
-    private List<Utilisateur> getAllUtilisateurs() {
-        return utilisateur.getAllUtilisateurs();
+    private ResponseEntity<List<Utilisateur>> getAllUtilisateurs() {
+        return ResponseEntity.ok(utilisateurService.getAllUtilisateurs());
     }
 
     @GetMapping("/{id}")
-    private Utilisateur findUtilisateur(@PathVariable("id") Long id) {
-        return utilisateur.getByUtilisateur(id);
+    private ResponseEntity<Utilisateur> findUtilisateur(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(utilisateurService.getByUtilisateur(id));
     }
 
-    @PostMapping
-    private Utilisateur createUtilisateur(@RequestBody @Valid Utilisateur utilisateur) {
-        return this.utilisateur.createUtilisateur(utilisateur);
+    @PostMapping("/create-user")
+    private ResponseEntity<Utilisateur> createUtilisateur(@RequestBody @Valid Utilisateur utilisateur) {
+        return ResponseEntity.ok(utilisateurService.createUtilisateur(utilisateur));
     }
 
     @PutMapping("/{id}")
-    public Utilisateur updateUtilisateur(@PathVariable("id") Long id,
+    public ResponseEntity<Utilisateur> updateUtilisateur(@PathVariable("id") Long id,
                                          Utilisateur utilisateur) {
-        return this.utilisateur.updateUtilisateur(id, utilisateur);
+        return ResponseEntity.ok(utilisateurService.updateUtilisateur(id, utilisateur));
     }
+
 
 
     @DeleteMapping("/{id}")
     private void DeleteUtilisateur(@PathVariable("id") Long id) {
-        utilisateur.deleteUtilisateur(id);
+        utilisateurService.deleteUtilisateur(id);
     }
 }

@@ -1,0 +1,13 @@
+export const PURCHASE = 'purchase';
+export const MAINTENANCE = 'maintenance';
+export const PURCHASE_SERVICES = 'purchaseServices';
+export const SOFTWARE_ACQUISITION = 'softwareAcquisition';
+export const UPDATE_SERVICE = 'updateService';
+export const SUBSCRIPTION_SUPPORT = 'subscriptionAndSupport';
+export const EQUIPMENTS = 'equipments';
+export const SERVICE_ASSET = 'serviceAsset';
+export const SOFTWARE = 'software';
+export const roleSuperAdmin = 'ROLE_SUPER_ADMIN';
+export const roleAdmin = 'ROLE_ADMIN';
+export const roleTechnician = 'ROLE_TECH';
+export const roleUser = 'ROLE_USER';

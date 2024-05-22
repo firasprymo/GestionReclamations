@@ -31,7 +31,7 @@ export class AcademyMockApi
     registerHandlers(): void
     {
         // -----------------------------------------------------------------------------------------------------
-        // @ Categories - GET
+        // @ CategoriesTypes - GET
         // -----------------------------------------------------------------------------------------------------
         this._fuseMockApiService
             .onGet('api/apps/academy/categories')

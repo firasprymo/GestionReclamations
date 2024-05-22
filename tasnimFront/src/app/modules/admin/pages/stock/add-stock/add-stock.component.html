@@ -1,0 +1,162 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">Stock management</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Add</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <!--            <div class="mt-2">-->
+            <!--                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">-->
+            <!--                    Layouts-->
+            <!--                </h2>-->
+            <!--            </div>-->
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="max-w-3xl">
+            <!-- Sectioned form with separate cards #3 -->
+            <form [formGroup]="stockForm">
+                <div class="flex flex-col  bg-card shadow rounded overflow-hidden">
+                    <div class="p-8 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-lg font-medium">Stock details</p>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="p-8 pb-4">
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">available Equipment</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'availableEquipment'"
+                                       placeholder="Add  availableEquipment">
+                                <mat-error *ngIf="stockForm.controls.availableEquipment.hasError('required')">
+                                    availableEquipment required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">Quantity</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'quantity'" type="number"
+                                          placeholder="Ajouter la quantity">
+                                <mat-error *ngIf="stockForm.controls.quantity.hasError('required')">
+                                    Quantity est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">stockRecord</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'stockRecord'"
+                                          placeholder="Ajouter la stockRecord">
+                                <mat-error *ngIf="stockForm.controls.stockRecord.hasError('required')">
+                                    stockRecord est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">location</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'location'"
+                                          placeholder="Ajouter la location">
+                                <mat-error *ngIf="stockForm.controls.location.hasError('required')">
+                                    location est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">startDate</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'startDate'"
+                                       placeholder="Ajouter la startDate"
+                                       [matDatepicker]="pickerStartDate">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="pickerStartDate"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerStartDate></mat-datepicker>
+                                <mat-error *ngIf="stockForm.controls.startDate.hasError('required')">
+                                    startDate est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">endDate</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'endDate'"
+                                       placeholder="Ajouter la endDate"
+                                       [matDatepicker]="pickerEndDate">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="pickerEndDate"></mat-datepicker-toggle>
+                                <mat-datepicker #pickerEndDate></mat-datepicker>
+                                <mat-error *ngIf="stockForm.controls.endDate.hasError('required')">
+                                    endDate est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">equipment</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+
+                                <select matNativeControl formControlName="equipmentId" >
+                                    <option [value]="equipment?.id"
+                                            *ngFor="let equipment of equipments$ | async">
+                                        {{equipment?.serialNumber}}</option>
+                                </select>
+                                <mat-error *ngIf="stockForm.controls.equipmentId?.hasError('required')">
+                                    equipment est obligatoire
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="flex items-center justify-end mt-10">
+                    <button mat-button>
+                        Cancel
+                    </button>
+                    <button *ngIf="isUpdate else onCreate" (click)="updateStock()"
+                            class="px-2 ml-3"
+                            mat-flat-button
+                            [color]="'warn'">
+                        Update
+                    </button>
+                    <ng-template #onCreate>
+                        <button
+                            (click)="addStock()"
+                            class="px-2 ml-3"
+                            mat-flat-button
+                            [color]="'primary'">
+                            Save
+                        </button>
+                    </ng-template>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

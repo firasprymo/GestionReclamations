@@ -30,7 +30,15 @@ export class UsersService {
     get user$(): Observable<Users> {
         return this._user.asObservable();
     }
-
+    /**
+     * Setter & getter for user
+     *
+     * @param value
+     */
+    set user(value: Users) {
+        // Store the value
+        this._user.next(value);
+    }
     /**
      * Getter for pagination
      */
@@ -52,7 +60,7 @@ export class UsersService {
     /**
      * Get user by id
      */
-    getUserById(id: string): Observable<Users> {
+    getUserById(id: number): Observable<Users> {
         return this._users.pipe(
             take(1),
             map((users) => {
@@ -115,7 +123,7 @@ export class UsersService {
         return this.users$.pipe(
             take(1),
             switchMap(users =>
-                this._httpClient.delete(`${ApiService.apiVersion}${ApiService.apiUser}/delete-user/${user.id}`).pipe(
+                this._httpClient.delete(`${ApiService.apiVersion}${ApiService.apiUser}/${user.id}`).pipe(
                     map(() => {
                         // Find the index of the deleted product
                         const index = users.findIndex(item => item.id === user.id);
@@ -128,5 +136,20 @@ export class UsersService {
                     })
                 ))
         );
+    }
+    /**
+     * Get the current logged in user data
+     */
+    get(): Observable<Users> {
+        const username = localStorage.getItem('username');
+        if (!username) {return;}
+        return this._httpClient.get<Users>(`${ApiService.apiVersion}${ApiService.apiUser}/Me`).pipe(
+            tap((response: any) => {
+                // Store the access token in the local storage
+                this._user.next(response);
+                // Return a new observable with the response
+                return of(response);
+
+            }));
     }
 }

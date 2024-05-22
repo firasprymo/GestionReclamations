@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StepsResolver } from './steps.resolver';
+import { StocksResolver } from './stocks-resolver.service';
 
 describe('StepsResolver', () => {
-  let resolver: StepsResolver;
+  let resolver: StocksResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(StepsResolver);
+    resolver = TestBed.inject(StocksResolver);
   });
 
   it('should be created', () => {

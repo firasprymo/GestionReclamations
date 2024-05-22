@@ -1,5 +1,6 @@
 package com.example.tasnimmakhlouf.entities;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.*;
 
@@ -9,8 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,26 +26,13 @@ public class Utilisateur implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(max = 20)
-    @NotBlank
-    private String name;
     private String username;
-    @NotBlank
-    @Column(nullable = false)
-    @Size(max = 20)
-    private String prenom;
     @Email
     private String email;
-    private String phone;
+    private String address;
+    private LocalDate birthDate;
+    private Long phone;
     private String password;
-    //le role de l'utilsateur ca sera de type role :string
-//role de type string 
-//@enumerated :j'ai utilise un class énumérative .
-    //many users have many roles
-//@ManyToMany
-//@JoinColumn(name="user-roles")
-//List<Role>roles;
-//
     @ManyToMany
     @JoinTable(name = "utilisateur_notifications",
             joinColumns = @JoinColumn(name = "utilisateur_id"),
@@ -64,8 +50,11 @@ public class Utilisateur implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        return Arrays.asList(new SimpleGrantedAuthority(role.name()));
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.name()));
+        } else {
+            return Collections.emptyList();
+        }
     }
 
 

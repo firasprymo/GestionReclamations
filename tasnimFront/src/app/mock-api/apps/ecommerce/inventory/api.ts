@@ -33,7 +33,7 @@ export class ECommerceInventoryMockApi
     registerHandlers(): void
     {
         // -----------------------------------------------------------------------------------------------------
-        // @ Categories - GET
+        // @ CategoriesTypes - GET
         // -----------------------------------------------------------------------------------------------------
         this._fuseMockApiService
             .onGet('api/apps/ecommerce/inventory/categories')

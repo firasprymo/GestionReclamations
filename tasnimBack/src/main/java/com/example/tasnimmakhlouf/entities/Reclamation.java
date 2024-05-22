@@ -20,7 +20,7 @@ public class Reclamation implements Serializable {
     private Long id;
     private String type;
     @Column(nullable = false)
-    private String contenu;
+    private String content;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)

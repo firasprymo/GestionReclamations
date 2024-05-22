@@ -1,0 +1,140 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div class="flex flex-wrap items-center font-medium">
+                <div>
+                    <a class="whitespace-nowrap text-primary-500">Equipments</a>
+                </div>
+                <div class="flex items-center ml-1 whitespace-nowrap">
+                    <mat-icon
+                        class="icon-size-5 text-secondary"
+                        [svgIcon]="'heroicons_solid:chevron-right'"></mat-icon>
+                    <a class="ml-1 text-primary-500">Add</a>
+                </div>
+            </div>
+            <!-- Title -->
+            <!--            <div class="mt-2">-->
+            <!--                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">-->
+            <!--                    Layouts-->
+            <!--                </h2>-->
+            <!--            </div>-->
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="max-w-3xl">
+            <!-- Sectioned form with separate cards #3 -->
+            <form [formGroup]="equipmentForm">
+                <div class="flex flex-col mt-8 bg-card shadow rounded overflow-hidden">
+                    <div class="p-8 bg-gray-50 dark:bg-gray-700">
+                        <p class="text-lg font-medium">New equipment</p>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="p-8 pb-4">
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                                gt-xs:mb-0">Serial Number</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'serialNumber'"
+                                       placeholder="Ajouter le Serial Number">
+                                <mat-error *ngIf="equipmentForm.get('serialNumber').hasError('required')">
+                                    Username is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">Inventory Number</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'inventoryNumber'"
+                                       placeholder="Ajouter l'inventoryNumber">
+                                <mat-error *ngIf="equipmentForm.get('inventoryNumber')?.hasError('required')">
+                                    Email is required
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                            gt-xs:mb-0">Description</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'description'"
+                                >
+                                <mat-error *ngIf="equipmentForm.get('description').hasError('required')">
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <mat-divider></mat-divider>
+                    <div class="p-8 pb-4">
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
+                                gt-xs:mb-0">Catégorie</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+                                <input matInput [formControlName]="'category'"
+                                       placeholder="Ajouter la catégorie">
+                                <mat-error *ngIf="equipmentForm.get('category').hasError('required')">
+                                    Catégorie is required
+                                </mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32
+                                gt-xs:mr-4 gt-xs:mb-0">Shipping Date</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+
+                                <input
+                                    matInput [formControlName]="'shippingDate'"
+                                    [placeholder]="'About'"
+                                    >
+                                <mat-error *ngIf="equipmentForm.get('shippingDate').hasError('required')">
+                                    About is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
+                            <span
+                                class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32
+                                gt-xs:mr-4 gt-xs:mb-0">Destination</span>
+                            <mat-form-field class="fuse-mat-dense flex-auto">
+
+                                <input
+                                    matInput [formControlName]="'destination'"
+                                    >
+                                <mat-error *ngIf="equipmentForm.get('destination').hasError('required')">
+                                    About is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="flex items-center justify-end mt-10">
+                    <button mat-button (click)="cancelEquipmentForm()">
+                        Cancel
+                    </button>
+                    <button (click)="addEquipment()"
+                            class="px-6 ml-3" [disabled]="equipmentForm.invalid"
+                            mat-flat-button
+                            [color]="'primary'">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

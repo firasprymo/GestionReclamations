@@ -4,18 +4,18 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8061/api/v1/',
-    apiImg: 'http://localhost:8061/',
+    apiUrl: 'http://localhost:8010/api/v1/',
+    apiImg: 'http://localhost:8010/',
     users: 'users',
     username: 'username',
     auth: 'auth',
     accessToken: 'accessToken',
-    lessons: 'lessons',
-    trainers: 'trainers',
+    categories: 'categories',
+    equipments: 'equipments',
     skills: 'skills',
-    courses: 'courses',
-    quizs: 'quizs',
-    steps: 'steps',
+    reclamations: 'reclamations',
+    contacts: 'contacts',
+    stocks: 'stocks',
     activeUser: 'activeUser'
 
 

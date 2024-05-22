@@ -48,7 +48,7 @@ export class HelpCenterMockApi
                 // Get FAQs
                 const faqs = cloneDeep(this._faqs);
 
-                // Get FAQ Categories
+                // Get FAQ CategoriesTypes
                 const categories = cloneDeep(this._faqCategories);
 
                 // If slug is not provided...
@@ -153,7 +153,7 @@ export class HelpCenterMockApi
                 const categorySlug = request.params.get('categorySlug');
                 const guideSlug = request.params.get('guideSlug');
 
-                // Get all Guides and Guide Categories
+                // Get all Guides and Guide CategoriesTypes
                 const guides = cloneDeep(this._guides);
                 const categories = cloneDeep(this._guideCategories);
 

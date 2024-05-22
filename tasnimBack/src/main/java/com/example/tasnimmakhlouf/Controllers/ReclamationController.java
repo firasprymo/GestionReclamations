@@ -2,8 +2,11 @@ package com.example.tasnimmakhlouf.Controllers;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.entities.Utilisateur;
 import com.example.tasnimmakhlouf.services.ReclamationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +29,10 @@ public class ReclamationController {
     private List<Reclamation> getAllReclamations() {
         return reclamationService.getAllReclamations();
     }
-
+    @GetMapping("/get-all-reclamations")
+    private Page<Reclamation> getAllReclamationsPage(Pageable pageable) {
+        return reclamationService.getAllReclamationsPage(pageable);
+    }
     @PostMapping("/")
     private Reclamation createReclamation(@RequestBody Reclamation reclamation) {
         return reclamationService.addReclamation(reclamation);
