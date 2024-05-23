@@ -35,10 +35,10 @@
                     <div class="p-8 pb-4">
                         <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
                             <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
-                            gt-xs:mb-0">Title</span>
+                            gt-xs:mb-0">Contenu</span>
                             <mat-form-field class="fuse-mat-dense flex-auto">
-                                <input matInput [formControlName]="'title'" placeholder="Add reclamation title" maxlength="255">
-                                <mat-error *ngIf="reclamationForm.controls.title.hasError('required')">
+                                <input matInput [formControlName]="'content'" placeholder="Add reclamation content" maxlength="255">
+                                <mat-error *ngIf="reclamationForm.controls.content.hasError('required')">
                                     Title required
                                 </mat-error>
                             </mat-form-field>
@@ -56,76 +56,17 @@
                             </mat-form-field>
                         </div>
                         <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
-                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Category</span>
+                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Email</span>
                             <mat-form-field class="fuse-mat-dense flex-auto">
-                                <mat-select [value]="'Choose the category'" [formControlName]="'category'">
-                                    <mat-option [value]="'grammar'">Grammar</mat-option>
-                                    <mat-option [value]="'vocabulary'">Vocabulary</mat-option>
-                                    <mat-option [value]="'skills'">Skills</mat-option>
-                                    <mat-option [value]="'general-english'">General English</mat-option>
-                                </mat-select>
+                               <input matInput [formControlName]="'email'" type="email"
+                                         placeholder="Ajouter la description de cours">
 
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
 
-                <div class="flex flex-col flex-auto mt-8 bg-card shadow rounded overflow-hidden">
-                    <div class="p-8 bg-gray-50 dark:bg-gray-700">
-                        <p class="text-lg font-medium">Fichier</p>
-                        <p class="text-secondary">Veuillez ajouter la photo de couverture</p>
-                    </div>
-                    <mat-divider></mat-divider>
-                    <div class="p-8 pb-4">
-                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
-                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Cover upload</span>
-                            <div>
-                                <input
-                                    id="image-file-input"
-                                    class="absolute h-0 w-0 opacity-0 invisible pointer-events-none"
-                                    type="file"
-                                    [accept]="'image/jpeg, image/png'"
-                                    (change)="uploadImage(imageFileInput.files)"
-                                    #imageFileInput>
-                                <label
-                                    class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                    for="image-file-input"
-                                    matRipple>
-                                    <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                </label>
-                                <mat-error *ngIf="reclamationForm.controls.coverFile.hasError('required')">
-                                    Picture required
-                                </mat-error>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-8 pb-4">
-                        <div class="flex flex-col gt-xs:flex-row gt-xs:items-baseline">
-                            <span class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4 gt-xs:mb-0">Video upload</span>
-                            <div>
-                                <input
-                                    id="video-file-input"
-                                    class="absolute h-0 w-0 opacity-0  pointer-events-none"
-                                    type="file"
-                                    [accept]="'video/mp4'"
-
-                                    (change)="uploadVideo(videoFileInput.files)"
-                                    #videoFileInput>
-                                <label
-                                    class="flex items-center justify-center w-10 h-10 rounded-full cursor-pointer hover:bg-gray-400 hover:bg-opacity-20 dark:hover:bg-black dark:hover:bg-opacity-5"
-                                    for="video-file-input"
-                                    matRipple>
-                                    <mat-icon [svgIcon]="'heroicons_outline:photograph'"></mat-icon>
-                                </label>
-                                <mat-error *ngIf="reclamationForm.controls.videoFile.hasError('required')">
-                                    Video required
-                                </mat-error>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="flex items-center justify-end mt-10">
                     <button mat-button>
                         Cancel

@@ -25,12 +25,10 @@ export class AddReclamationComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.reclamationForm = this._formBuilder.group({
-            title: ['', [Validators.required]],
+            content: ['', [Validators.required]],
             description: ['', Validators.required],
-            videoFile: ['', Validators.required],
-            coverFile: ['', Validators.required],
-            trainer: ['', Validators.required],
-            category: ['', Validators.required],
+            email: ['', Validators.required],
+            userId: ['', Validators.required],
         });
 
     }
@@ -45,15 +43,9 @@ export class AddReclamationComponent implements OnInit, OnDestroy {
      * Create product
      */
     createReclamation(): void {
-        const fd = new FormData();
-        fd.append('title', this.reclamationForm.value.title);
-        fd.append('trainer.id', this.reclamationForm.value.trainer.id);
-        fd.append('category', this.reclamationForm.value.category);
-        fd.append('description', this.reclamationForm.value.description);
-        fd.append('videoFile', this.reclamationForm.value.videoFile);
-        fd.append('coverFile', this.reclamationForm.value.coverFile);
+
         // Create the product
-        this._reclamationService.addReclamation(fd).subscribe((newReclamation) => {
+        this._reclamationService.addReclamation(this.reclamationForm.value).subscribe((newReclamation) => {
             // Mark for check
             this._changeDetectorRef.markForCheck();
             this._router.navigate(['pages/show-reclamations']);

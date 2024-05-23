@@ -2,6 +2,7 @@ package com.example.tasnimmakhlouf.Controllers;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.Auth.ReclamationRequest;
 import com.example.tasnimmakhlouf.entities.Utilisateur;
 import com.example.tasnimmakhlouf.services.ReclamationService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class ReclamationController {
         return reclamationService.getAllReclamationsPage(pageable);
     }
     @PostMapping("/")
-    private Reclamation createReclamation(@RequestBody Reclamation reclamation) {
+    private Reclamation createReclamation(@RequestBody ReclamationRequest reclamation) {
         return reclamationService.addReclamation(reclamation);
     }
 }

@@ -2,13 +2,14 @@ package com.example.tasnimmakhlouf.services;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.Auth.ReclamationRequest;
 import com.example.tasnimmakhlouf.entities.Reclamation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ReclamationService {
 
-    Reclamation addReclamation(Reclamation reclamation);
+    Reclamation addReclamation(ReclamationRequest reclamation);
 
     List<Reclamation> getAllReclamations();
 

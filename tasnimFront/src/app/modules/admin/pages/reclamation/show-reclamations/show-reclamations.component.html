@@ -50,17 +50,17 @@
                             matSortDisableClear>
                             <div></div>
 
-                            <div [mat-sort-header]="'title'">Title</div>
+                            <div [mat-sort-header]="'content'">Contenu</div>
                             <div [mat-sort-header]="'description'">
                                 Description
                             </div>
                             <div
-                                [mat-sort-header]="'trainer'">
-                                Trainer
+                                [mat-sort-header]="'email'">
+                                Email
                             </div>
                             <div
-                                [mat-sort-header]="'type'">
-                                Type
+                                [mat-sort-header]="'user'">
+                                Utilisateur
                             </div>
 
                             <div class="hidden sm:block">Actions</div>
@@ -89,7 +89,7 @@
 
                                     <!-- SKU -->
                                     <div class="hidden md:block truncate">
-                                        {{reclamation.type}}
+                                        {{reclamation.content}}
                                     </div>
                                     <div class="hidden md:block truncate">
                                         {{reclamation.description}}
@@ -97,10 +97,10 @@
 
                                     <!-- Name -->
                                     <div class="truncate">
-                                        {{reclamation?.utilisateurs[0]?.username}}
+                                        {{reclamation?.email}}
                                     </div>
                                     <div class="truncate">
-                                        {{reclamation?.type}}
+                                        {{reclamation?.utilisateurs[0]?.username}}
                                     </div>
 
                                     <!-- Price -->

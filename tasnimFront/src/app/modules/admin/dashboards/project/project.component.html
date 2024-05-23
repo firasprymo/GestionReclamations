@@ -27,41 +27,7 @@
 
             </div>
             <!-- Project selector -->
-            <div
-                class="relative flex self-start pt-2 pb-1 pl-5 pr-4 cursor-pointer overflow-hidden rounded-t-xl border border-b-0 bg-default"
-                matRipple
-                [matMenuTriggerFor]="projectsMenu">
-                <div class="flex items-center">
-                    <div class="overflow-hidden">
-                        <div class="font-medium leading-6 truncate">{{selectedProject}}</div>
-                    </div>
-                    <div class="flex items-center justify-center pl-2">
-                        <mat-icon
-                            class="icon-size-5"
-                            [svgIcon]="'heroicons_solid:chevron-down'"></mat-icon>
-                    </div>
-                </div>
-                <mat-menu
-                    #projectsMenu="matMenu"
-                    [xPosition]="'before'">
-                    <button
-                        mat-menu-item
-                        (click)="selectedProject='ACME Corp. Backend App'">ACME Corp. Backend App
-                    </button>
-                    <button
-                        mat-menu-item
-                        (click)="selectedProject='ACME Corp. Frontend App'">ACME Corp. Frontend App
-                    </button>
-                    <button
-                        mat-menu-item
-                        (click)="selectedProject='Creapond'">Creapond
-                    </button>
-                    <button
-                        mat-menu-item
-                        (click)="selectedProject='Withinpixels'">Withinpixels
-                    </button>
-                </mat-menu>
-            </div>
+
         </div>
     </div>
 
@@ -94,7 +60,7 @@
                             <!-- Overdue -->
                             <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                 <div class="flex items-start justify-between">
-                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Course</div>
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Réclamation</div>
 
                                 </div>
                                 <div class="flex flex-col items-center mt-2">
@@ -102,38 +68,38 @@
                                         class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
                                         {{reclamations?.length}}
                                     </div>
-                                    <div class="text-lg font-medium text-red-600 dark:text-red-500">courses</div>
+                                    <div class="text-lg font-medium text-red-600 dark:text-red-500">réclamations</div>
 
                                 </div>
                             </div>
                             <!-- Issues -->
                             <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                 <div class="flex items-start justify-between">
-                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Trainer</div>
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Equipement</div>
 
                                 </div>
                                 <div class="flex flex-col items-center mt-2">
                                     <div
                                         class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">
-                                        {{trainers?.length}}
+                                        {{equipments?.length}}
                                     </div>
-                                    <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Coachs</div>
+                                    <div class="text-lg font-medium text-amber-600 dark:text-amber-500">équipements</div>
 
                                 </div>
                             </div>
                             <!-- Features -->
                             <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                 <div class="flex items-start justify-between">
-                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Quiz</div>
+                                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Stock</div>
                                     <div class="ml-2 -mt-2 -mr-3">
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center mt-2">
                                     <div
                                         class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">
-                                        {{quizs?.length}}
+                                        {{contacts?.length}}
                                     </div>
-                                    <div class="text-lg font-medium text-green-600 dark:text-green-500">exams</div>
+                                    <div class="text-lg font-medium text-green-600 dark:text-green-500">Stock</div>
 
                                 </div>
                             </div>
