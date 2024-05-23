@@ -1,10 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AddEquipmentComponent} from './add-equipment.component';
+import {CategoriesResolvers} from '../../../../../shared/resolver/categories-resolvers.service';
 
 const routes: Routes = [{
     path: '',
-    component: AddEquipmentComponent
+    component: AddEquipmentComponent,
+    resolve:{
+        categories:CategoriesResolvers
+    }
 }];
 
 @NgModule({

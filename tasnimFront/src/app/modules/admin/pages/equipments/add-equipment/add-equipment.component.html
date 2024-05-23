@@ -78,9 +78,13 @@
                                 class="font-semibold mb-1 gt-xs:text-right gt-xs:min-w-32 gt-xs:mr-4
                                 gt-xs:mb-0">Catégorie</span>
                             <mat-form-field class="fuse-mat-dense flex-auto">
-                                <input matInput [formControlName]="'category'"
-                                       placeholder="Ajouter la catégorie">
-                                <mat-error *ngIf="equipmentForm.get('category').hasError('required')">
+
+                                <select matNativeControl formControlName="categoryId" >
+                                    <option [value]="category?.id"
+                                            *ngFor="let category of categories$ | async">
+                                        {{category?.type}}</option>
+                                </select>
+                                <mat-error *ngIf="equipmentForm.get('categoryId')?.hasError('required')">
                                     Catégorie is required
                                 </mat-error>
 

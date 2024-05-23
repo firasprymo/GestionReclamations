@@ -2,13 +2,14 @@ package com.example.tasnimmakhlouf.services;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.Auth.EquipmentRequest;
 import com.example.tasnimmakhlouf.entities.Equipment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface EquipmentService {
 
-    Equipment addEquipment(Equipment equipment);
+    Equipment addEquipment(EquipmentRequest equipment);
 
     Equipment updateEquipment(Equipment equipment);
 

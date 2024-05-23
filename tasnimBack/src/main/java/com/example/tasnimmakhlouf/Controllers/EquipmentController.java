@@ -2,6 +2,7 @@ package com.example.tasnimmakhlouf.Controllers;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.Auth.EquipmentRequest;
 import com.example.tasnimmakhlouf.entities.Reclamation;
 import com.example.tasnimmakhlouf.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +39,7 @@ public class EquipmentController {
     }
 
     @PostMapping("")
-    private Equipment createEquipment(@RequestBody Equipment equipment) {
+    private Equipment createEquipment(@RequestBody EquipmentRequest equipment) {
         return equipmentService.addEquipment(equipment);
     }
 

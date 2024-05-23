@@ -2,8 +2,13 @@ package com.example.tasnimmakhlouf.services.implementation;
 
 import java.util.List;
 
+import com.example.tasnimmakhlouf.Auth.EquipmentRequest;
+import com.example.tasnimmakhlouf.Auth.StockRequest;
+import com.example.tasnimmakhlouf.entities.Categories;
 import com.example.tasnimmakhlouf.entities.Reclamation;
+import com.example.tasnimmakhlouf.entities.Stock;
 import com.example.tasnimmakhlouf.repository.EquipmentRepository;
+import com.example.tasnimmakhlouf.services.CategoryService;
 import com.example.tasnimmakhlouf.services.EquipmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,8 +22,18 @@ import com.example.tasnimmakhlouf.entities.Equipment;
 public class EquipmentServiceImpl implements EquipmentService {
 
     private final EquipmentRepository equipmentRepository;
-
-    public Equipment addEquipment(Equipment equipment) {
+    private final CategoryService categoryService;
+@Override
+    public Equipment addEquipment(EquipmentRequest equipmentRequest) {
+        Categories categories = categoryService.getByCategory(equipmentRequest.getCategoryId());
+        Equipment equipment = Equipment.builder()
+                .serialNumber(equipmentRequest.getSerialNumber())
+                .inventoryNumber(equipmentRequest.getInventoryNumber())
+                .description(equipmentRequest.getDescription())
+                .shippingDate(equipmentRequest.getShippingDate())
+                .destination(equipmentRequest.getDestination())
+                .category(categories)
+                .build();
         return equipmentRepository.save(equipment);
     }
 
@@ -39,6 +54,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
     }
+
     public Page<Equipment> getAllEquipmentsPage(Pageable pageable) {
         return equipmentRepository.findAll(pageable);
     }
